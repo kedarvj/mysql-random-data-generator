@@ -4,14 +4,19 @@ This is the easiest MySQL Random Data Generator tool. Load the procedure and exe
 
 # Usage:
 
-1. Download random data generater from website or git.
+1) Download random data generater from website or git.
+- http://kedar.nitty-witty.com/blog/generate-random-test-data-for-mysql-using-routines
 
-2. Load it to mysql
+2) Load it to mysql
+
 mysql -uUSER -p DBNAME < populate.sql
 
-3. Use:
+3) Use:
+
 mysql>use DBNAME
+
 mysql>call populate('sakila','film',100,'N');
-# Parameters are: database-name, table-name, number-of-records, debug-mode
-# Setting debug-mode as 'Y' will print all the insert statements that are being executed.
+
+- Parameters are: database-name, table-name, number-of-records, debug-mode
+- Setting debug-mode as 'Y' will print all the insert statements that are being executed.
 
