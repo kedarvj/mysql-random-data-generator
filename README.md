@@ -4,7 +4,7 @@ This is the easiest MySQL Random Data Generator tool. Load the procedure and exe
 
 # Usage:
 
-1) Download random data generater from website or git.
+1) Download random data generater (populate.sql) from website or git.
 - http://kedar.nitty-witty.com/blog/generate-random-test-data-for-mysql-using-routines
 
 2) Load it to mysql
