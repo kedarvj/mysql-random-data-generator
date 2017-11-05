@@ -1,7 +1,7 @@
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS populate $$
-CREATE PROCEDURE populate(in_db varchar(20), in_table varchar(20), in_rows int, in_debug char(1)) 
+CREATE PROCEDURE populate(in_db varchar(50), in_table varchar(50), in_rows int, in_debug char(1)) 
 BEGIN
 /*
 |
@@ -157,7 +157,7 @@ DELIMITER ;
 ## MySQL function to generate random varchar column of specified length(alpha-numeric string).
 DELIMITER $$
 DROP FUNCTION IF EXISTS get_varchar $$
-CREATE FUNCTION get_varchar(in_length int) RETURNS VARCHAR(500) DETERMINISTIC
+CREATE FUNCTION get_varchar(in_length varchar(500)) RETURNS VARCHAR(500) DETERMINISTIC
 	RETURN SUBSTRING(MD5(RAND()) FROM 1 FOR in_length)
 $$
 DELIMITER ;
@@ -165,7 +165,7 @@ DELIMITER ;
 ## MySQL function to generate random datetime value (any datetime of year 2012).
 DELIMITER $$
 DROP FUNCTION IF EXISTS get_datetime $$
-CREATE FUNCTION get_datetime() RETURNS VARCHAR(20) DETERMINISTIC
+CREATE FUNCTION get_datetime() RETURNS VARCHAR(30) DETERMINISTIC
 	RETURN FROM_UNIXTIME(ROUND(RAND() * (1356892200 - 1325356200)) + 1325356200)
 $$
 DELIMITER ;
