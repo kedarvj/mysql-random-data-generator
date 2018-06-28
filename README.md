@@ -15,7 +15,6 @@ mysql -uUSER -p DBNAME < populate_fk.sql
 ```
 
 3) Use:
-
 ```
 mysql>use DBNAME
 
