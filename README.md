@@ -8,10 +8,12 @@ This is the easiest MySQL Random Data Generator tool. Load the procedure and exe
 - http://kedar.nitty-witty.com/blog/generate-random-test-data-for-mysql-using-routines
 
 2) Load it to mysql
+
 ```
 mysql -uUSER -p DBNAME < populate.sql
 mysql -uUSER -p DBNAME < populate_fk.sql
 ```
+
 3) Use:
 ```
 mysql>use DBNAME
@@ -19,6 +21,7 @@ mysql>use DBNAME
 mysql>call populate('sakila','film',100,'N');
 mysql>call populate_fk('sakila','child_table',100,'N');
 ```
-- Parameters are: database-name, table-name, number-of-records, debug-mode
-- Setting debug-mode as 'Y' will print all the insert statements that are being executed.
+
+- Parameters are: `database-name`, `table-name`, `number-of-records`, `debug-mode`
+- Setting `debug-mode` as `Y` will print all the insert statements that are being executed.
 
