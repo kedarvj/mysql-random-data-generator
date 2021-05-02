@@ -1,4 +1,3 @@
-
 /**************
 | poplate_fk : script to generate random data into a child table with 
 | Note that this script will require the original random data generator populate procedure(populate.sql)
@@ -13,10 +12,10 @@
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS populate_fk $$
-CREATE PROCEDURE populate_fk(in_db varchar(20), in_table varchar(20), in_rows int, in_debug char(1)) 
+CREATE PROCEDURE populate_fk(in_db varchar(50), in_table varchar(50), in_rows int, in_debug char(1)) 
 fk_load:BEGIN
 
-select CONCAT("UPDATE ",TABLE_NAME," SET ",COLUMN_NAME,"=(SELECT ",REFERENCED_COLUMN_NAME," FROM ",REFERENCED_TABLE_SCHEMA,".",REFERENCED_TABLE_NAME," ORDER BY RAND() LIMIT 1);") into @query from information_schema.key_column_usage where TABLE_NAME=in_table AND TABLE_SCHEMA=in_db;
+select CONCAT("UPDATE ",TABLE_NAME," SET ",COLUMN_NAME,"=(SELECT ",REFERENCED_COLUMN_NAME," FROM ",REFERENCED_TABLE_SCHEMA,".",REFERENCED_TABLE_NAME," ORDER BY RAND() LIMIT 1);") into @query from information_schema.key_column_usage where TABLE_NAME=in_table AND TABLE_SCHEMA=in_db AND CONSTRAINT_NAME <> 'PRIMARY';
 	IF in_debug='Y' THEN
 		select @query;
 	END IF;
