@@ -10,8 +10,8 @@ This is the easiest MySQL Random Data Generator tool. Load the procedure and exe
 2) Load it to mysql
 
 ```
-mysql -uUSER -p DBNAME < populate.sql
-mysql -uUSER -p DBNAME < populate_fk.sql
+mysql -u USER -p DBNAME < populate.sql
+mysql -u USER -p DBNAME < populate_fk.sql
 ```
 
 3) Use:
