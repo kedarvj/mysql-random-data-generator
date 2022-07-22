@@ -2,7 +2,7 @@
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS populate $$
-CREATE PROCEDURE populate(in_db varchar(50), in_table varchar(50), in_rows int, in_debug char(1))
+CREATE PROCEDURE populate(in_db varchar(100), in_table varchar(100), in_rows int, in_debug char(1))
 BEGIN
 /*
 |
