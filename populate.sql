@@ -27,7 +27,7 @@ DECLARE batch_size INT;
 
 DECLARE done INT DEFAULT 0;
 DECLARE cur_datatype cursor FOR
- SELECT column_name,COLUMN_TYPE,data_type,CHARACTER_MAXIMUM_LENGTH,EXTRA,NUMERIC_PRECISION,NUMERIC_SCALE FROM information_schema.columns WHERE table_name=in_table AND table_schema=in_db;
+ SELECT column_name,COLUMN_TYPE,data_type,CHARACTER_MAXIMUM_LENGTH,EXTRA,NUMERIC_PRECISION,NUMERIC_SCALE FROM information_schema.columns WHERE table_name=in_table AND table_schema=in_db ORDER BY ORDINAL_POSITION;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
 
