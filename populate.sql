@@ -73,6 +73,7 @@ set @func_query = CONCAT( @func_query , ";" );
         END IF;
 SET i=in_rows;
 SET batch_size=500;
+START TRANSACTION;
 populate :loop
         WHILE (i>batch_size) DO
           PREPARE t_stmt FROM @func_query;
@@ -87,6 +88,7 @@ SET @func_query=concat("INSERT INTO ", in_db,".",in_table," VALUES (",func_query
         END WHILE;
 LEAVE populate;
 END LOOP populate;
+COMMIT;
 SELECT "Kedar Vaijanapurkar" AS "Developed by";
 END
 $$
