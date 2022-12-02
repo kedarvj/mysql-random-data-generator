@@ -27,9 +27,8 @@ DECLARE batch_size INT;
 
 DECLARE done INT DEFAULT 0;
 DECLARE cur_datatype cursor FOR
- SELECT column_name,COLUMN_TYPE,data_type,CHARACTER_MAXIMUM_LENGTH,EXTRA,NUMERIC_PRECISION,NUMERIC_SCALE FROM information_schema.columns WHERE table_name=in_table AND table_schema=in_db ORDER BY ORDINAL_POSITION;
+ SELECT column_name,COLUMN_TYPE,data_type,CHARACTER_MAXIMUM_LENGTH,EXTRA, COALESCE(NUMERIC_PRECISION,0), COALESCE(NUMERIC_SCALE,0) FROM information_schema.columns WHERE table_name=in_table AND table_schema=in_db ORDER BY ORDINAL_POSITION;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-
 
 SET func_query='';
 OPEN cur_datatype;
@@ -46,6 +45,7 @@ WHEN col_extra='auto_increment' THEN SET func_query=concat(func_query,'NULL, ');
 WHEN col_datatype in ('double','int','bigint') THEN SET func_query=concat(func_query,'get_int(), ');
 WHEN col_datatype in ('varchar','char') THEN SET func_query=concat(func_query,'get_string(',ifnull(col_maxlen,0),'), ');
 WHEN col_datatype in ('tinyint', 'smallint','year') or col_datatype='mediumint' THEN SET func_query=concat(func_query,'get_tinyint(), ');
+WHEN col_datatype in ('bit') THEN SET func_query=concat(func_query,'get_bit(), ');
 WHEN col_datatype in ('datetime','timestamp') THEN SET func_query=concat(func_query,'get_datetime(), ');
 WHEN col_datatype in ('date') THEN SET func_query=concat(func_query,'get_date(), ');
 WHEN col_datatype in ('float', 'decimal') THEN SET func_query=concat(func_query,'get_float(',col_num_precision,',',col_num_scale,'), ');
@@ -188,4 +188,12 @@ DROP FUNCTION IF EXISTS get_datetime $$
 CREATE FUNCTION get_datetime() RETURNS VARCHAR(30) DETERMINISTIC
         RETURN FROM_UNIXTIME(ROUND(RAND() * (1356892200 - 1325356200)) + 1325356200)
 $$
+
+## MySQL function to generate bit value.
+CREATE DEFINER=`admin`@`%` FUNCTION `get_bit`() RETURNS bit(1)
+BEGIN
+    RETURN b'0';
+END
+
 DELIMITER ;
+
