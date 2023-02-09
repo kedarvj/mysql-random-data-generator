@@ -21,7 +21,7 @@ DECLARE col_maxlen VARCHAR(100);
 DECLARE col_extra VARCHAR(100);
 DECLARE col_num_precision VARCHAR(100);
 DECLARE col_num_scale VARCHAR(100);
-DECLARE func_query VARCHAR(1000);
+DECLARE func_query VARCHAR(5000);
 DECLARE i INT;
 DECLARE batch_size INT;
 
@@ -87,7 +87,7 @@ SET @func_query=concat("INSERT INTO ", in_db,".",in_table," VALUES (",func_query
         END WHILE;
 LEAVE populate;
 END LOOP populate;
-SELECT "Kedar Vaijanapurkar" AS "Developed by";
+-- SELECT "Kedar Vaijanapurkar" AS "Developed by";
 END
 $$
 DELIMITER ;
