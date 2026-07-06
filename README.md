@@ -1,6 +1,8 @@
 # mysql-random-data-generator
 This is the easiest MySQL Random Data Generator tool. Load the procedure and execute to auto detect column types and load data in it.
 
+# Update:
+We have a new web-version available for this tool https://nitty-witty.com/mysql-random-data-generator/
 
 # Usage:
 
